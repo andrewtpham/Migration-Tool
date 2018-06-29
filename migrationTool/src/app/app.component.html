@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+<html lang="en">
+
+<body class="application">
+  <div class="container">
+    <div class="row">
+      <div class="navbar navbar-inverse navbar-fixed-top col-10" role="navigation">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="./">Data Migration Tool</a>
+          </div>
+        </div>
+      </div>
+      <div class="btn-group" dropdown>
+        <button dropdownToggle type="button" class="btn btn-primary dropdown-toggle">
+          Organization
+          <span class="caret"></span>
+        </button>
+        <ul *dropdownMenu class="dropdown-menu" role="menu">
+          <li role="menuitem" *ngFor="let organization of organizations">
+            <a class="dropdown-item" href="#" (click)="setOrganization(organization)">{{ organization }}</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="row">
+      <ngx-datatable #myTable class="bootstrap ngx-datatable expandable col-10" [rows]="rows" [columns]="columns" [groupRowsBy]="'pair'"
+        [columnMode]="'force'" [headerHeight]="40" [footerHeight]="40" [limit]="10" [rowHeight]="'auto'" [reorderable]="reorderable"
+        [groupExpansionDefault]="true" [selected]="selectedMappedEntry" [selectionType]="'single'">
+        <!-- Group Header Template -->
+        <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader (toggle)="onDetailToggle($event)">
+          <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
+            <div style="padding-left:5px;">
+              <a href="#" [class.datatable-icon-right]="!expanded" [class.datatable-icon-down]="expanded" title="Expand/Collapse Group"
+                (click)="toggleExpandGroup(group)">
+                <b>{{ group.value[0].pair }}</b>
+              </a>
+            </div>
+          </ng-template>
+        </ngx-datatable-group-header>
+        <!-- Row Column Template -->
+        <ngx-datatable-column name="Original Label" prop="original" editable="false"></ngx-datatable-column>
+        <ngx-datatable-column name="Tola Label" prop="tola" editable="false"></ngx-datatable-column>
+      </ngx-datatable>
+      <button type="button" class="btn btn-danger" (click)="removeMappedEntry()">Remove</button>
+    </div>
+
+    <div class="row ml-2 mt-2">
+      <div class="col-4">
+        <ng-select class="mb-2" [items]="startpoints" [(ngModel)]="selectedStartpoint" label="Input Data Scheme" (change)="onInputSelected($event)">
+        </ng-select>
+        <div class="list-group" id="originalData">
+          <a href="#" class="list-group-item" *ngFor="let label of inputLabels" (click)="changeActive($event)">{{ label }}</a>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary col-1 mt-4" (click)="mapLabels($event)">Map</button>
+
+      <div class="col-4">
+        <ng-select class="mb-2" [items]="endpoints" [(ngModel)]="selectedEndpoint" label="Tola Data Scheme" (change)="onTolaSelected($event)">
+        </ng-select>
+        <div class="list-group" id="tolaData">
+          <a href="#" class="list-group-item" *ngFor="let label of tolaLabels" (click)="changeActive($event)">{{ label }}</a>
+        </div>
+      </div>
+
+      <div class="list-group" id="tolaData">
+        <a href="#" class="list-group-item" *ngFor="let item of order; let i=index">
+          {{ i+1 + ". " + item }}
+        </a>
+      </div>
+    </div>
+
+    <div class="row ml-4 mt-2">
+      <button type="button" class="btn btn-primary col-2 align-left" (click)="migrate($event)">Migrate</button>
+      <div class="col-6"></div>
+      <button type="button" class="btn btn-danger col-2" (click)="reset($event)">Reset</button>
+    </div>
+  </div>
+</body>
+
+</html>

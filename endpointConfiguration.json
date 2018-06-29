@@ -1,0 +1,108 @@
+{
+    "sector": [
+        "sector"
+    ],
+    "stakeholder": [
+        "name",
+        "role",
+        "type",
+        "sectors",
+        "workflowlevel1"
+    ],
+    "workflowlevel1": [
+        "name",
+        "funding_status",
+        "cost_center",
+        "description",
+        "start_date",
+        "end_date",
+        "sector",
+        "sub_sector",
+        "country"
+    ],
+    "milestone": [
+        "name",
+        "description",
+        "milestone_start_date",
+        "milestone_end_date",
+        "workflowlevel1"
+    ],
+    "level": [
+        "name",
+        "description",
+        "country",
+        "workflowlevel1",
+        "parent_id"
+    ],
+    "objective": [
+        "name",
+        "description",
+        "workflowlevel1"
+    ],
+    "disaggregationtype": [
+        "disaggregation_type",
+        "description"
+    ],
+    "disaggregationlabel": [
+        "label",
+        "disaggregation_type"
+    ],
+    "disaggregationvalue": [
+        "disaggregation_type"
+    ],
+    "indicator": [
+        "name",
+        "workflowlevel1",
+        "number",
+        "definition",
+        "unit_of_measure",
+        "baseline",
+        "lop_target",
+        "key_performance_indicator",
+        "data_collection_frequency",
+        "responsible_person",
+        "method_of_analysis",
+        "information_use",
+        "objectives",
+        "disaggregation"
+    ],
+    "siteprofile": [
+        "name",
+        "contact_leader",
+        "contact_number",
+        "latitude",
+        "longitude",
+        "status",
+        "country"
+    ],
+    "workflowlevel2": [
+        "name",
+        "description",
+        "expected_start_date",
+        "expected_end_date",
+        "total_estimated_budget",
+        "status",
+        "progress",
+        "workflowlevel1",
+        "milestone",
+        "siteprofile",
+        "stakeholder",
+        "indicators",
+        "status"
+    ],
+    "periodictarget": [
+        "period",
+        "target",
+        "indicator"
+    ],
+    "collecteddata": [
+        "achieved",
+        "date_collected",
+        "periodic_target",
+        "indicator",
+        "workflowlevel1",
+        "siteprofile",
+        "disaggregation_value",
+        "evidence"
+    ]
+}
